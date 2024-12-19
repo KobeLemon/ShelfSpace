@@ -49,7 +49,7 @@
                 var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
                 await LocalStorage.SetItemAsync("authToken", result.Token); // Save token in local storage
 
-                UserState.SetUser(result.User);
+                UserState.SetUser(result.User, result.Token);
                 // Redirect to a secure page after login
                 NavigationManager.NavigateTo("/profile/{result.User.Id}"); // Change the redirect as needed
             }
